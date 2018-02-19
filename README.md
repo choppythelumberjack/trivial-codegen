@@ -152,7 +152,7 @@ object MyCustomContext extends SqlMirrorContext[H2Dialect, Literal](H2Dialect, L
 ````
 
 
-### Stereotyping
+## Stereotyping
 There are times you will encounter the same kind of table across multiple schemas, multiple databases
 or perhaps just prefixed differently. Typically, this table will have almost the same columns
 and the same datatypes of those columns except just one or two.
