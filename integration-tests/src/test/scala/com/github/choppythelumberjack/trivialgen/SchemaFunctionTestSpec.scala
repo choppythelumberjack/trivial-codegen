@@ -14,7 +14,8 @@ class SchemaFunctionTestSpec extends  FreeSpec with Matchers {
 
   def makeDataSource(schemaFile:String) = {
     val ds = new JdbcDataSource()
-    ds.setURL(s"jdbc:h2:mem:sample;INIT=RUNSCRIPT FROM 'generator/src/test/resources/${schemaFile}'")
+    // quoted tests seem to have issues unless IGNORECASE is enabled
+    ds.setURL(s"jdbc:h2:mem:sample;IGNORECASE=TRUE;INIT=RUNSCRIPT FROM 'generator/src/test/resources/${schemaFile}'")
     ds.setUser("sa")
     ds.setPassword("da")
     ds.asInstanceOf[DataSource with Closeable]
