@@ -1,0 +1,7 @@
+target
+*.iml
+.settings
+.classpath
+.idea
+integration-tests/src/main/scala/com/github/choppythelumberjack/trivialgen/generated/*
+integration-tests/src/test/scala/com/github/choppythelumberjack/trivialgen/generated/*
