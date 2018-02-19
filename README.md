@@ -109,7 +109,7 @@ gen.writeFiles("integration-tests/src/test/scala/com/github/choppythelumberjack/
  
 
 The following schema should be generated as a result.
-````
+````scala
 package com.github.choppythelumberjack.trivialgen.generated.comp1.public
 
 case class Address(person_fk: Int, street: Option[String], zip: Option[Int])
@@ -146,7 +146,7 @@ trait PublicExtensions[Idiom <: io.getquill.idiom.Idiom, Naming <: io.getquill.N
 
 Later when declaring your quill database context you can compose the context with
 the `PublicExtensions` like so:
-````
+````scala
 object MyCustomContext extends SqlMirrorContext[H2Dialect, Literal](H2Dialect, Literal)
   with PublicExtensions[H2Dialect, Literal]
 ````
@@ -249,7 +249,7 @@ trait CommonExtensions[Idiom <: io.getquill.idiom.Idiom, Naming <: io.getquill.N
 
 Later when declaring your quill database context you can compose the context with
 the `CommonExtensions` like so:
-````
+````scala
 object MyCustomContext extends SqlMirrorContext[H2Dialect, Literal](H2Dialect, Literal)
   with CommonExtensions[H2Dialect, Literal]
 ````
