@@ -15,7 +15,7 @@ The Trivial Generator is the simplest code generator in this library.
 The purpose of the trivial code generator is to generate simple case classes representing tables
 in a database. Create one or multiple CodeGeneratorConfig objects
 and call the `.writeFiles` or `.writeStrings` methods
-on the code generator and the reset happens automatically.
+on the code generator and the rest happens automatically.
 
 Given the following schema:
 ````sql
@@ -44,10 +44,10 @@ gen.writeFiles("integration-tests/src/test/scala/com/github/choppythelumberjack/
 ````
 
 Note that there are two options for the Trivial Generator's Naming strategy, the `TrivialSnakeCaseNames` strategy
-and the `TrivialLiteralNames` strategy. Note that in the former case, schemas will
+and the `TrivialLiteralNames` strategy. In the former case, schemas will
 be converted to lower case before translation. Use the appropriate Quill Naming Strategy
-if your database is case sensetive. Neither one of these context allow custom naming of table or columns. Use the
-ComposeableTraitsGen to get that functionality.
+if your database is case sensitive. (Neither one of them allow custom naming of table or columns. Use the
+ComposeableTraitsGen to get that functionality)
 
 The following case case classes will be generated
 ````scala
