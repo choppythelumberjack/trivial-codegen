@@ -6,7 +6,10 @@ import scala.util.{Failure, Success, Try}
 lazy val `generator` =
   (project in file("generator"))
     .settings(commonSettings ++ releaseSettings ++
-      Seq(fork in Test := true)
+      Seq(
+        name := "trivial-codegen",
+        fork in Test := true
+      )
     )
 
 lazy val `integration-tests` =
