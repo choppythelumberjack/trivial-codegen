@@ -1,14 +1,21 @@
 import ReleaseTransformations._
 import sbtrelease.ReleasePlugin
 
+import scala.util.{Failure, Success, Try}
+
 lazy val `generator` =
   (project in file("generator"))
-    .settings(commonSettings)
+    .settings(commonSettings ++ releaseSettings ++
+      Seq(fork in Test := true)
+    )
 
 lazy val `integration-tests` =
   (project in file("integration-tests"))
-    .settings(commonSettings ++ releaseSettings)
-      .dependsOn(generator)
+    .settings(commonSettings ++ Seq(publishArtifact := false) ++ Seq(
+      fork in Test := true,
+      unmanagedSourceDirectories in Compile += (baseDirectory.value / "target" / "generated")
+    ))
+    .dependsOn(generator % "compile->test")
 
 lazy val quillVersion = "2.3.1"
 
@@ -74,7 +81,7 @@ lazy val releaseSettings = ReleasePlugin.extraReleaseCommands ++ Seq(
     }
   },
   pomExtra := (
-    <url>http://github.com/getquill/foo</url>
+      <url>https://github.com/choppythelumberjack</url>
       <scm>
         <connection>scm:git:git@github.com:choppythelumberjack/trivial-codegen.git</connection>
         <developerConnection>scm:git:git@github.com:choppythelumberjack/trivial-codegen.git</developerConnection>

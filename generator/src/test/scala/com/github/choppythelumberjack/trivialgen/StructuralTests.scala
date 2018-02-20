@@ -16,7 +16,7 @@ class StructuralTests extends CodegenSpec with HasStandardGen {
 
       "single table" in {
         val gens = standardGen(
-          "generator/src/test/resources/schema_snakecase.sql",
+          "src/test/resources/schema_snakecase.sql",
           _.table.tableName.toLowerCase == "person",
           SnakeCaseNames
         ).makeGenerators.toList
@@ -32,7 +32,7 @@ class StructuralTests extends CodegenSpec with HasStandardGen {
       "multi table" in {
 
         val gens = standardGen(
-          "generator/src/test/resources/schema_snakecase.sql",
+          "src/test/resources/schema_snakecase.sql",
           entityNamingStrategy = SnakeCaseNames
         ).makeGenerators.toList.sortBy(_.caseClassesCode)
 
@@ -56,7 +56,7 @@ class StructuralTests extends CodegenSpec with HasStandardGen {
       "single table" in {
 
         val gens = standardGen(
-          "generator/src/test/resources/schema.sql",
+          "src/test/resources/schema.sql",
           _.table.tableName.toLowerCase == "person",
           CustomStrategy(c => c.columnName.toLowerCase, s => s.tableName.toLowerCase)
         ).makeGenerators.toList
@@ -70,7 +70,7 @@ class StructuralTests extends CodegenSpec with HasStandardGen {
       "multi table" in {
 
         val gens = standardGen(
-          "generator/src/test/resources/schema.sql",
+          "src/test/resources/schema.sql",
           entityNamingStrategy = CustomStrategy(c => c.columnName.toLowerCase, s => s.tableName.toLowerCase)
         ).makeGenerators.toList.sortBy(_.caseClassesCode)
 
@@ -96,7 +96,7 @@ class StructuralTests extends CodegenSpec with HasStandardGen {
 
       "prefix collision" in {
         val gens = standardGen(
-          "generator/src/test/resources/schema_twotable.sql",
+          "src/test/resources/schema_twotable.sql",
           entityNamingStrategy = CustomStrategy(
             c => c.columnName.toLowerCase,
             s => {
@@ -129,7 +129,7 @@ class StructuralTests extends CodegenSpec with HasStandardGen {
 
         "prefix test with snake case" in {
           val gens = standardGen(
-            "generator/src/test/resources/schema_snakecase_twotable.sql",
+            "src/test/resources/schema_snakecase_twotable.sql",
             entityNamingStrategy = SnakeCaseCustomTable(_.tableName.toLowerCase.replaceFirst("(alpha_)|(bravo_)", ""))
           ).makeGenerators.toList.sortBy(_.caseClassesCode)
 
@@ -151,7 +151,7 @@ class StructuralTests extends CodegenSpec with HasStandardGen {
 
         "prefix collision - different columns with datatype perculation" in {
           val gens = standardGen(
-            "generator/src/test/resources/schema_snakecase_twotable_differentcolumns.sql",
+            "src/test/resources/schema_snakecase_twotable_differentcolumns.sql",
             entityNamingStrategy = SnakeCaseCustomTable(_.tableName.toLowerCase.replaceFirst("(alpha_)|(bravo_)", ""))
           ).makeGenerators.toList.sortBy(_.caseClassesCode)
 
@@ -181,7 +181,7 @@ class StructuralTests extends CodegenSpec with HasStandardGen {
 
         "prefix test with snake case - with different columns - and different types" in {
           val gens = standardGen(
-            "generator/src/test/resources/schema_snakecase_twotable_differentcolumns_differenttypes.sql",
+            "src/test/resources/schema_snakecase_twotable_differentcolumns_differenttypes.sql",
             entityNamingStrategy = SnakeCaseCustomTable(_.tableName.toLowerCase.replaceFirst("(alpha_)|(bravo_)", "").capitalize)
           ).makeGenerators.toList.sortBy(_.caseClassesCode)
 
@@ -211,7 +211,7 @@ class StructuralTests extends CodegenSpec with HasStandardGen {
 
         "prefix test with snake case - with different columns - and different types" in {
           val gens = standardGen(
-            "generator/src/test/resources/schema_snakecase_twoschema_differentcolumns_differenttypes.sql",
+            "src/test/resources/schema_snakecase_twoschema_differentcolumns_differenttypes.sql",
             entityNamingStrategy = SnakeCaseCustomTable(_.tableName.toLowerCase.replaceFirst("(alpha_)|(bravo_)", "").capitalize),
             entityNamespacer = _.tableSchem.toLowerCase.replaceAll("(alpha)|(bravo)", "public"),
             entityMemberNamer = ts => s"${ts.tableSchem}_${ts.tableName}".toLowerCase.snakeToLowerCamel

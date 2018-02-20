@@ -5,7 +5,8 @@ import com.github.choppythelumberjack.trivialgen.ext.TrivialGen
 class SimpleCrossProjectTest extends SchemaUsingSpec {
 
   override def pack(num:Int) = s"com.github.choppythelumberjack.trivialgen.generated.simp${num}"
-  override def path(num:Int) = s"integration-tests/src/test/scala/com/github/choppythelumberjack/trivialgen/generated/simp${num}"
+  //override def path(num:Int) = s"../integration-tests/src/test/scala/com/github/choppythelumberjack/trivialgen/generated/simp${num}"
+  override def path(num:Int) = s"../integration-tests/target/generated/com/github/choppythelumberjack/trivialgen/generated/simp${num}"
 
   "trivial codegen" - {
     "snakecase" in {
@@ -16,7 +17,7 @@ class SimpleCrossProjectTest extends SchemaUsingSpec {
     }
     "literal" in {
       val gen = new TrivialGen(literalConfig, pack(1)) {
-        //override def namingStrategy = TrivialLiteralNames // Should be default
+        override def namingStrategy = TrivialLiteralNames // Should be default
       }
       gen.writeFiles(path(1))
     }

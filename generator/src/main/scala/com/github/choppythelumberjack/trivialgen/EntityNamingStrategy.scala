@@ -38,6 +38,7 @@ object EntityNamingStrategy {
   def nameColumn(strategy: EntityNamingStrategy, columnSchema: ColumnMeta) = {
     strategy match {
       case TrivialLiteralNames => columnSchema.columnName
+      case TrivialLiteralNames => columnSchema.columnName.toLowerCase
       case TrivialSnakeCaseNames => columnSchema.columnName.snakeToLowerCamel
       case LiteralNames => columnSchema.columnName
       case SnakeCaseNames => columnSchema.columnName.snakeToLowerCamel
