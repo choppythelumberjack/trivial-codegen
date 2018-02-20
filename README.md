@@ -9,6 +9,21 @@ Inspired by the Slick code generator but albeit a bit simpler,
 the code generator is fairly customizeable although a couple of
 ready-to-use implementations come out of the box. 
 
+You can import the Trivial Code Generator using maven:
+````xml
+<dependency>
+  <groupId>com.github.choppythelumberjack</groupId>
+  <artifactId>trivial-codegen_2.11</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```` 
+
+Or using sbt:
+````scala
+libraryDependencies += "com.github.choppythelumberjack" %% "trivial-codegen" % "1.0.0"
+````
+
+
 ## Trivial Gen
 
 The Trivial Generator is the simplest code generator in this library. 
