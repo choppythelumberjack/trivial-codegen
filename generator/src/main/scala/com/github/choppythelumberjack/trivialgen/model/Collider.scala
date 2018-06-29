@@ -18,7 +18,7 @@ trait ColliderBase extends Collider {
       a.name,
       commonAncestor,
       a.nullable || b.nullable,
-      a.meta ++ a.meta
+      a.meta ++ b.meta
     )
   }
 
