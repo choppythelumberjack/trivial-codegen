@@ -5,3 +5,14 @@ target
 .idea
 integration-tests/src/main/scala/com/github/choppythelumberjack/trivialgen/generated/*
 integration-tests/src/test/scala/com/github/choppythelumberjack/trivialgen/generated/*
+libexec/
+lib_managed/
+src_managed/
+project/boot/
+project/plugins/project/
+logs/
+project/project
+project/target
+project/build.properties
+generator/project/target
+generator/project/build.properties
